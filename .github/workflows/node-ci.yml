@@ -27,4 +27,10 @@ jobs:
 
       - name: Ver Entorno
         run:
-          echo "Entorno actual: ${{ secrets.NODE_ENV }}"
+          |
+          if [ -z "${{ secrets.NODE_ENV }}" ]; then
+            echo "NODE_ENV no está definido"
+            exit 1
+          else
+            echo "Entorno actual: ${{ secrets.NODE_ENV }}"
+          fi
